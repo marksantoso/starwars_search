@@ -1,0 +1,83 @@
+// Popover styles
+.pop-over {
+    border: 0px;
+    background: none;
+    border-radius: 3px;
+    &.popover.bottom {
+        > .arrow {
+            top: -10px;
+            &:after {
+                border-bottom-color: $navy;
+            }
+        }
+    }
+
+    h3.popover-title {
+        font-size: 12px;
+        background: $navy;
+        color: $starwarsYellow;
+        border-bottom: 1px solid #1d242b;
+    }
+    .popover-content {
+        border-radius: 3px;
+        font-size: 12px;
+        background: $navy;
+        color: $starwarsYellow;
+        border-bottom: 1px solid #1d242b;
+    }
+}
+
+// Accessibility Container
+.acess-container {
+    margin: 10px 0px 0px;
+    text-align: right;
+
+    .font-size {
+        color: $starwarsYellow;
+        margin-top: 4px;
+        .increase {
+            display: inline-block;
+            font-size: 18px;
+            .plus {
+                font-size: 17px;
+                top: -3px;
+                position: absolute;
+            }
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .decrease {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 18px;
+            .minus {
+                font-size: 17px;
+                top: -3px;
+                position: absolute;
+            }
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .wookie {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .english-flag {
+        display: inline-block;
+        margin-right: 10px;
+        width: 27px;
+        height: 27px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

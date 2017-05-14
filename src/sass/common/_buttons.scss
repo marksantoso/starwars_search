@@ -1,0 +1,12 @@
+.load-more-btn {
+    width: 200px;
+    font-size: 12px;
+    margin: 20px auto;
+    padding: 5px;
+    display: block;
+    text-align: center;
+    color: $starwarsYellow;
+    &:hover {
+        cursor: pointer;
+    }
+}

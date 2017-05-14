@@ -1,0 +1,44 @@
+html, body  {
+    position: relative;
+}
+
+body {
+    background-image: url('http://wallpapercave.com/wp/bV3WiYh.jpg');
+    background-size: 100%;
+    background-color: black;
+    background-repeat: repeat;
+}
+
+// Ajax
+.loader, .complete-msg {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+// Errors
+.errorMessage {
+    width: 200px;
+    margin: 100px auto;
+}
+
+// backgrounds
+.navy-trans-bg {
+    background-color: $navytrans;
+}
+
+// paddings
+.no-pad-right {
+    padding-right: 0px !important;
+}
+
+.no-pad-right {
+    padding-left: 0px !important;
+}
+
+// margins
+.margin-tb-40 {
+    margin: 40px auto;
+}
