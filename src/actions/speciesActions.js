@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { translateString, translateObj } from '../helpers/translate';
 
 import {
     STORE_SPECIES,
@@ -7,22 +8,27 @@ import {
 } from './types';
 
 
-export const getSpecies = (name, species) => {
+export const getSpecies = (name, species, language) => {
 
     return (dispatch, getState) => {
 
         let promises = [];
 
         Object.keys(species).forEach(function(key, index) {
-            const speciesUrl = species[key];
+            let speciesUrl = species[key];
+
+            if (language === 'wookiee') {
+                speciesUrl = translateString(speciesUrl) + '?format=wookiee';
+            }
+
             promises.push(axios.get(speciesUrl));
         });
 
-        handleAjax(promises, name, dispatch);
+        handleAjax(promises, name, dispatch, language);
     }
 }
 
-const handleAjax = (promises, name, dispatch) => {
+const handleAjax = (promises, name, dispatch, language) => {
 
     dispatch(loadingSpecies());
 
@@ -32,7 +38,15 @@ const handleAjax = (promises, name, dispatch) => {
         let species = [];
 
         Object.keys(results).forEach(function(key, index) {
-            species.push(results[key].data);
+
+            let data;
+            if (language === 'wookiee') {
+                data = translateObj(results[key].data);
+            } else {
+                data = results[key].data;
+            }
+
+            species.push(data);
         });
 
         let char = {};

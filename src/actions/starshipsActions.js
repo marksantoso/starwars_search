@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { translateString, translateObj } from '../helpers/translate';
 
 import {
     STORE_STARSHIPS,
@@ -7,21 +8,26 @@ import {
 } from './types';
 
 
-export const getStarships = (char, starships) => {
+export const getStarships = (char, starships, language) => {
 
     return (dispatch, getState) => {
         let promises = [];
 
         Object.keys(starships).forEach(function(key, index) {
-            const starshipsUrl = starships[key];
+            let starshipsUrl = starships[key];
+
+            if (language === 'wookiee') {
+                starshipsUrl = translateString(starshipsUrl) + '?format=wookiee';
+            }
+
             promises.push(axios.get(starshipsUrl));
         });
 
-        handleAjax(promises, char, dispatch);
+        handleAjax(promises, char, dispatch, language);
     }
 }
 
-const handleAjax = (promises, name, dispatch) => {
+const handleAjax = (promises, name, dispatch, language) => {
 
     dispatch(loadingStarships());
 
@@ -30,7 +36,15 @@ const handleAjax = (promises, name, dispatch) => {
         let starships = [];
 
         Object.keys(results).forEach(function(key, index) {
-            starships.push(results[key].data);
+
+            let data;
+            if (language === 'wookiee') {
+                data = translateObj(results[key].data);
+            } else {
+                data = results[key].data;
+            }
+
+            starships.push(data);
         });
 
         let char = {};

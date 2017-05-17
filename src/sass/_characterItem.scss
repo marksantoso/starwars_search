@@ -15,15 +15,20 @@
         .name {
             margin-bottom: 5px;
             display: block;
+            font-size: 12px;
+        }
+        .planet {
+            font-size: 12px;
         }
         &:hover {
             cursor: pointer;
             width: 95%;
             margin: 0 auto;
-            height: 115px;
+            height: 145px;
         }
         .char-score {
             margin-top: 10px;
+            font-size: 12px;
             .glyphicon {
                 font-size: 20px;
             }

@@ -28,19 +28,19 @@ class Character extends Component {
             this.setState({ modalState: true })
 
             const char = this.props.char;
-
+            const language = this.props.api.language;
 
             // Get sub props from api if not already defined
             if (!(char.name in this.props.films)) {
-                this.props.getFilms(char.name, char['films']);
+                this.props.getFilms(char.name, char['films'], language);
             }
 
             if (!(char.name in this.props.species)) {
-                this.props.getSpecies(char.name, char['species']);
+                this.props.getSpecies(char.name, char['species'], language);
             }
 
             if (!(char.name in this.props.starships)) {
-                this.props.getStarships(char.name, char['starships']);
+                this.props.getStarships(char.name, char['starships'], language);
             }
         }
 

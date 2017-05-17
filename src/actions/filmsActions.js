@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { translateString, translateObj } from '../helpers/translate';
 
 import {
     STORE_FILMS,
@@ -7,33 +8,45 @@ import {
 } from './types';
 
 
-export const getFilms = (name, films) => {
+export const getFilms = (name, films, language) => {
 
     return (dispatch, getState) => {
 
         let promises = [];
 
         Object.keys(films).forEach(function(key, index) {
-            const filmUrl = films[key];
+            let filmUrl = films[key];
+
+            if (language === 'wookiee') {
+                filmUrl = translateString(filmUrl) + '?format=wookiee';
+            }
+
             promises.push(axios.get(filmUrl));
         });
 
-        handleAjax(promises, name, dispatch);
+        handleAjax(promises, name, dispatch, language);
     }
 }
 
 
-const handleAjax = (promises, name, dispatch) => {
+const handleAjax = (promises, name, dispatch, language) => {
 
     dispatch(loadingFilms());
 
+
     axios.all(promises).then(function(results) {
         // create fresh array to hold films
-
         let films = [];
 
         Object.keys(results).forEach(function(key, index) {
-            films.push(results[key].data);
+            let data;
+            if (language === 'wookiee') {
+                data = translateObj(results[key].data);
+            } else {
+                data = results[key].data;
+            }
+
+            films.push(data);
         });
 
         let char = {};

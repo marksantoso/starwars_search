@@ -18,7 +18,7 @@ class CharacterList extends Component {
     _loadMore() {
 
         if (this.props.pagination.next != null) {
-                this.props.fetchMoreChars(this.props.pagination.next, this.props.pagination.index + 10, 'infinitescroll');
+                this.props.fetchMoreChars(this.props.pagination.next, this.props.pagination.index + 10, 'infinitescroll', this.props.api.language);
         } else {
             this.state.moreItems = false;
         }
@@ -92,8 +92,8 @@ class CharacterList extends Component {
 }
 
 const mapStateToProps = ( state ) => {
-    const { pagination, characters, scores } = state
-    return { pagination, characters, scores };
+    const { pagination, characters, scores, api } = state
+    return { pagination, characters, scores, api };
 }
 
 export default connect(mapStateToProps, { fetchMoreChars })(CharacterList);

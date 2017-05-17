@@ -26,7 +26,6 @@ class CharDetailedModal extends Component {
              loading = { display: 'none' };
         }
 
-
         const char = this.props.char;
         // Create JSX li with char props
         const { name, height, mass, skin_color, eye_color, birth_year, gender, homeworldName, score } = char;
@@ -85,7 +84,7 @@ class CharDetailedModal extends Component {
                     )
             } else {
                 return (
-                    <li key={prop}><span className="prop">{prop}:{charDetail[prop]}</span></li>
+                    <li key={prop}><span className="prop">{prop}: {charDetail[prop]}</span></li>
                 );
             }
         });

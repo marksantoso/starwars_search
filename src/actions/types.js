@@ -19,3 +19,4 @@ export const STORE_STARSHIPS = 'STORE_STARSHIPS';
 export const STORE_SPECIES = 'STORE_SPECIES';
 export const STORE_FILMS = 'STORE_FILMS';
 export const STORE_COMMENT = 'STORE_COMMENT';
+export const CLEAR_ERROR = 'CLEAR_ERROR';

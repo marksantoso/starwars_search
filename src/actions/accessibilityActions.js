@@ -17,9 +17,6 @@ export const updateFontSize = (newSize) => {
 }
 
 function updateFontSizeAction(newSize) {
-
-    console.log(newSize);
-
     return {
         type: UPDATE_FONTSIZE,
         payload: { fontSize: newSize }

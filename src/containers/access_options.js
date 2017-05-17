@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Popover, OverlayTrigger } from 'react-bootstrap';
-import { changeLanguage } from '../actions/accessibilityActions';
-import { updateFontSize } from '../actions/accessibilityActions';
+import { changeLanguage, updateFontSize } from '../actions/accessibilityActions';
+import { getChars } from '../actions/charactersActions';
+
 
 // images import
 import chewy from '../assets/images/accessibility/chewbacca.png';
@@ -25,11 +26,13 @@ class Accessibility extends Component {
     _changeToEnglish() {
         this.setState({ chewy: chewy_disabled, english: english });
         this.props.changeLanguage('english');
+        this.props.getChars(null, this.props.api.rootUrl, null);
     };
 
     _changeToWookie() {
         this.setState({ chewy: chewy, english: english_disabled });
         this.props.changeLanguage('wookiee');
+        this.props.getChars('wookiee', this.props.api.rootUrl, null);
     };
 
     _increaseFont() {
@@ -62,6 +65,15 @@ class Accessibility extends Component {
             currentFontSize = parseInt(currentFontSize);
             // Increase current fontsize by 1
             item.style.fontSize = currentFontSize + 1 + 'px';
+        });
+
+        const tiles = document.getElementsByClassName('content');
+        console.log(tiles);
+        const currentHeight = document.defaultView.getComputedStyle(tiles[0], null).height;
+
+        // getElementsByClassName returns html collection obj not a true array, so convert to array
+        Array.from(tiles).forEach(function(item, i) {
+            item.style.height = currentHeight + 1 + 'px';
         });
 
         this.props.updateFontSize(newFontSize);
@@ -182,4 +194,4 @@ const mapStateToProps = ( state ) => {
     return { api, accessibility };
 }
 
-export default connect(mapStateToProps, { changeLanguage, updateFontSize })( Accessibility );
+export default connect(mapStateToProps, { changeLanguage, updateFontSize, getChars })( Accessibility );

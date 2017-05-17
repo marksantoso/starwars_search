@@ -26,10 +26,13 @@ class App extends Component {
      }
 
     _loadMore() {
-        this.props.fetchMoreChars(this.props.pagination.next, this.props.pagination.index + 10);
+        this.props.fetchMoreChars(this.props.pagination.next, this.props.pagination.index + 10, null, this.props.api.language);
     }
 
   render() {
+
+      console.log(this.props.characters);
+
       let content = null;
       let showLoadMore;
 

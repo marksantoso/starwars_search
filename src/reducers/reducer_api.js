@@ -10,7 +10,8 @@ import {
   FILMS_LOADING,
   FILMS_LOADED,
   SPECIES_LOADING,
-  SPECIES_LOADED
+  SPECIES_LOADED,
+  CLEAR_ERROR
 } from '../actions/types';
 
 
@@ -37,6 +38,8 @@ export default function(state = INITIAL_STATE, action) {
         case STARSHIPS_LOADED:
             return { ...state, ...action.payload }
         case RESULTS_ERROR:
+            return { ...state, ...action.payload }
+        case CLEAR_ERROR:
             return { ...state, ...action.payload }
         default:
             return state;
