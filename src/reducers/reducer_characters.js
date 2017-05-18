@@ -3,9 +3,7 @@ import {
   CHARS_CLEAR
 } from '../actions/types';
 
-
 const INITIAL_STATE = { };
-
 
 export default function(state = INITIAL_STATE, action) {
 

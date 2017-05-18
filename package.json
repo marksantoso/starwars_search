@@ -25,6 +25,7 @@
     "image-webpack-loader": "^3.3.0",
     "jquery": "^2.2.1",
     "jsdom": "^8.1.0",
+    "json-loader": "^0.5.4",
     "mocha": "^2.4.5",
     "node-sass": "^4.5.2",
     "postcss-loader": "^2.0.5",

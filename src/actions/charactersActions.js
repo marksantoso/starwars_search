@@ -1,7 +1,8 @@
 import axios from 'axios';
-
+// import helper functions
 import { translateObj, translateString } from '../helpers/translate';
-
+// import image assets
+import charImages from '../assets/json/char_images.json';
 
 import {
     CHARS_RECEIVED,
@@ -15,7 +16,6 @@ import {
     CLEAR_ERROR
 
 } from './types';
-
 
 export const getChars = (language, rootUrl, term) => {
 
@@ -47,15 +47,12 @@ const handleAjax = (url, pageIndex, dispatch, language) => {
             data = response.data;
         }
 
-        console.log(data);
-
         const { count, next, previous } = data
 
         dispatch(storePagination({ count, next, previous, index: pageIndex }))
 
         let chars = data.results;
-        const promises = [];
-
+        let promises = [];
 
         Object.keys(chars).forEach(function(key, index) {
             let homeworldUrl;
@@ -64,24 +61,72 @@ const handleAjax = (url, pageIndex, dispatch, language) => {
             } else {
                 homeworldUrl = chars[key].homeworld;
             }
-            console.log(homeworldUrl);
-
             promises.push(axios.get(homeworldUrl));
         });
 
         axios.all(promises).then(function(results) {
             // create fresh array to hold chars
-
             let nextChars = [];
             Object.keys(results).forEach(function(key, index) {
                 //assign relevent key values
                  nextChars[pageIndex + parseInt(key)] = { ...chars[key], homeworldName: results[key].data.name }
             });
 
+            // Check for cached char images. Bing API is exxy.
+            if (typeof charImages === 'undefined' || Object.keys(charImages).length === 0) {
+                // Now get images using name as query
+                promises = [];
+                Object.keys(nextChars).forEach(function(key, index) {
+                    let name = encodeURI(nextChars[key].name + ' starwars');
+                    let offset = 0;
 
-            dispatch(storeCharList(nextChars));
-            dispatch(loadedChars());
+                    if (language === 'wookiee') {
+                        name = translateString(name);
+                    }
+
+                    // Call bing image search API
+                    const image = axios({
+                        method: 'get',
+                        url: `https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=${name}&count=1&offset=${offset}`,
+                          headers: {
+                              common: {
+                                  'Ocp-Apim-Subscription-Key': '***REMOVED***'
+                              }
+                          }
+                    });
+                    promises.push(image);
+                });
+
+                axios.all(promises).then(function(results) {
+                    // create fresh array to hold chars
+                    Object.keys(results).forEach(function(key, index) {
+                        //assign relevent key values
+
+                        const imageUrl = (typeof results[key].data.value[0] !== 'undefined') ? results[key].data.value[0].contentUrl : null;
+                        const thumbnailUrl = (typeof results[key].data.value[0] !== 'undefined') ? results[key].data.value[0].thumbnailUrl : null;
+                        nextChars[pageIndex + parseInt(key)] = { ...nextChars[pageIndex + parseInt(key)], imageUrl, thumbnailUrl }
+                    });
+
+                    dispatch(storeCharList(nextChars));
+                    dispatch(loadedChars());
+                });
+            } else {
+                Object.keys(nextChars).forEach(function(key, index) {
+
+                    let name = nextChars[key].name;
+                    // translate name
+                    if (language === 'wookiee') {
+                        name = translateString(name);
+                    }
+                    //spread values into existing array
+                    nextChars[key] = { ...nextChars[key], imageUrl: charImages[name].imageUrl, thumbnailUrl: charImages[name].thumbnailUrl }
+                });
+
+                dispatch(storeCharList(nextChars));
+                dispatch(loadedChars());
+            }
         });
+
     }).catch(function (error) {
         console.log(error)
         if (error.response) {
@@ -95,9 +140,6 @@ export const fetchMoreChars = (next, pageIndex, type, language) => {
     if (language === 'wookiee') {
         next = translateString(next);
     }
-
-    console.log(next);
-
 
     return (dispatch, getState) => {
         if (type === 'infinitescroll') {
@@ -153,7 +195,8 @@ function hideShowMore() {
 
 function clearError() {
     return {
-        type: CLEAR_ERROR
+        type: CLEAR_ERROR,
+        payload: { error: false }
     }
 }
 function clearChars() {

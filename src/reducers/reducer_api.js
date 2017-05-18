@@ -14,7 +14,6 @@ import {
   CLEAR_ERROR
 } from '../actions/types';
 
-
 const INITIAL_STATE = { rootUrl: 'http://swapi.co/api' };
 
 export default function(state = INITIAL_STATE, action) {

@@ -28,10 +28,9 @@ class CharacterScore extends Component {
         )
     }
 }
-const mapStateToProps = ( state ) => {
+const mapStateToProps = (state) => {
     const { scores } = state;
     return { scores };
 }
-
 
 export default connect(mapStateToProps, null)(CharacterScore);

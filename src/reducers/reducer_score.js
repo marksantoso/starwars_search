@@ -1,9 +1,7 @@
 import {
   SCORE_ADD,
   SCORE_DEC,
-
 } from '../actions/types';
-
 
 const INITIAL_STATE = { };
 

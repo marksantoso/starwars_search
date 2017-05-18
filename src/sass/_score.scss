@@ -1,11 +1,13 @@
 .downVote {
     &:hover {
         cursor: pointer;
+        color: $starwarsYellow;
     }
 }
 
 .upVote {
     &:hover {
         cursor: pointer;
+        color: $starwarsYellow;
     }
 }

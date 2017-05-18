@@ -4,7 +4,6 @@ import { Popover, OverlayTrigger } from 'react-bootstrap';
 import { changeLanguage, updateFontSize } from '../actions/accessibilityActions';
 import { getChars } from '../actions/charactersActions';
 
-
 // images import
 import chewy from '../assets/images/accessibility/chewbacca.png';
 import english from '../assets/images/accessibility/english_flag.png';
@@ -36,7 +35,7 @@ class Accessibility extends Component {
     };
 
     _increaseFont() {
-        const elements = document.querySelectorAll('*');
+        if (this.props.api.loading) return;
         let newFontSize;
 
         switch (this.props.accessibility.fontSize) {
@@ -59,16 +58,12 @@ class Accessibility extends Component {
                 return;
         }
 
-        elements.forEach(function(item, i) {
-            let currentFontSize = document.defaultView.getComputedStyle(item, null).fontSize;
-            // Convert string to int
-            currentFontSize = parseInt(currentFontSize);
-            // Increase current fontsize by 1
-            item.style.fontSize = currentFontSize + 1 + 'px';
-        });
+        let currentFontSize = document.defaultView.getComputedStyle(document.body, null).fontSize;
+        currentFontSize = parseInt(currentFontSize);
+        // Increase current fontsize by 1
+        document.body.style.fontSize = currentFontSize + 1 + 'px';
 
         const tiles = document.getElementsByClassName('content');
-        console.log(tiles);
         const currentHeight = document.defaultView.getComputedStyle(tiles[0], null).height;
 
         // getElementsByClassName returns html collection obj not a true array, so convert to array
@@ -81,7 +76,9 @@ class Accessibility extends Component {
 
 
     _decreaseFont() {
-        const elements = document.querySelectorAll('*');
+
+        if (this.props.api.loading) return;
+
         let newFontSize;
 
         switch (this.props.accessibility.fontSize) {
@@ -104,12 +101,17 @@ class Accessibility extends Component {
                 return;
         }
 
-        elements.forEach(function(item, i) {
-            let currentFontSize = document.defaultView.getComputedStyle(item, null).fontSize;
-                // Convert string to int
-                currentFontSize = parseInt(currentFontSize);
-                // Decrease current fontsize by 1
-                item.style.fontSize = currentFontSize - 1 + 'px';
+        let currentFontSize = document.defaultView.getComputedStyle(document.body, null).fontSize;
+        currentFontSize = parseInt(currentFontSize);
+        // Increase current fontsize by 1
+        document.body.style.fontSize = currentFontSize - 1 + 'px';
+
+        const tiles = document.getElementsByClassName('content');
+        const currentHeight = document.defaultView.getComputedStyle(tiles[0], null).height;
+
+        // getElementsByClassName returns html collection obj not a true array, so convert to array
+        Array.from(tiles).forEach(function(item, i) {
+            item.style.height = currentHeight - 1 + 'px';
         });
 
         this.props.updateFontSize(newFontSize);
@@ -143,23 +145,22 @@ class Accessibility extends Component {
         );
 
         let increaseFontColor;
-        if (this.props.accessibility.fontSize == 'bigger') {
+        if (this.props.accessibility.fontSize == 'bigger' || this.props.api.loading) {
                 increaseFontColor = {
                     color: '#d7d7d7'
                 }
         }
 
         let decreaseFontColor;
-        if (this.props.accessibility.fontSize == 'smaller') {
+        if (this.props.accessibility.fontSize == 'smaller' || this.props.api.loading) {
                 decreaseFontColor = {
                     color: '#d7d7d7'
                 }
         }
 
-
          return (
             <div className="acess-container">
-                <div className="col-md-3 col-md-offset-7">
+                <div className="fonts">
                     <div className="font-size">
                         <OverlayTrigger trigger={['hover', 'focus']} placement="bottom"  overlay={decreaseFontPopover} name="decreaseFont " onClick={this._decreaseFont.bind(this)}>
                             <div className="decrease" style={decreaseFontColor}>
@@ -174,15 +175,13 @@ class Accessibility extends Component {
 
                     </div>
                 </div>
-                <div className="col-md-2  no-pad-right">
+                <div className="language">
                     <OverlayTrigger trigger={['hover', 'focus']} placement="bottom"  overlay={englishPopover} name="english" onClick={this._changeToEnglish.bind(this)}>
                         <img className="english-flag"  src={ this.state.english }  />
                     </OverlayTrigger>
                     <OverlayTrigger trigger={['hover', 'focus']} placement="bottom"  overlay={wookiePopover} name="chewy" onClick={this._changeToWookie.bind(this)}>
                         <img className="wookie"  src={ this.state.chewy }  />
                     </OverlayTrigger>
-
-
                 </div>
             </div>
         )
@@ -194,4 +193,4 @@ const mapStateToProps = ( state ) => {
     return { api, accessibility };
 }
 
-export default connect(mapStateToProps, { changeLanguage, updateFontSize, getChars })( Accessibility );
+export default connect(mapStateToProps, { changeLanguage, updateFontSize, getChars })(Accessibility);

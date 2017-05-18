@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-
+// import action creators
 import { saveComment } from '../actions/charactersActions';
 
+// import image assets
 import spinner from '../assets/images/loaders/bar.gif';
+import noImage from '../assets/images/char_images/no-image.jpg';
+
+//import comment form component
 import CommentForm from './forms/comment';
+
 
 
 class CharDetailedModal extends Component {
@@ -20,6 +25,13 @@ class CharDetailedModal extends Component {
     }
 
     render() {
+
+        const charImage = (this.props.char.thumbnailUrl !== null) ? this.props.char.thumbnailUrl : noImage;
+
+        const imageStyle = {
+            backgroundImage:  'url(' + charImage + ')',
+        }
+
         let loading = { display: 'block' };
 
         if (!(this.props.api.filmsLoading) && !(this.props.api.speciesLoading) && !(this.props.api.starshipsLoading)) {
@@ -98,11 +110,15 @@ class CharDetailedModal extends Component {
                 dialogClassName="char-detail-modal"
             >
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-sm">{ this.props.char.name }</Modal.Title>
-                <h5>{ this.props.char.homeworldName }</h5>
-                <span className="score">{ this.props.char.score } votes</span>
+                <div className="image-thumb" style={imageStyle}  />
 
-                <img className="pull-right" style={loading} src={spinner} />
+                <div className="header-details">
+                    <Modal.Title id="contained-modal-title-sm">{ this.props.char.name }</Modal.Title>
+                    <h5>{ this.props.char.homeworldName }</h5>
+                    <span className="score">{ this.props.char.score } votes</span>
+                </div>
+
+                <img className="pull-right loader-bar" style={loading} src={spinner} />
 
             </Modal.Header>
             <Modal.Body>

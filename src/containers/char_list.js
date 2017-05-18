@@ -16,19 +16,16 @@ class CharacterList extends Component {
     }
 
     _loadMore() {
-
         if (this.props.pagination.next != null) {
                 this.props.fetchMoreChars(this.props.pagination.next, this.props.pagination.index + 10, 'infinitescroll', this.props.api.language);
         } else {
             this.state.moreItems = false;
         }
-
     }
 
     render() {
-
         // Push all chars into an array.
-        let chars = [];
+        const chars = [];
 
         for (var char in this.props.characters) {
            chars.push(this.props.characters[char]);
@@ -53,21 +50,12 @@ class CharacterList extends Component {
         charsWithScore = charsWithScore.sort(function(a,b) {
 
             // for chars with no score set score to zero
-            if (typeof a.score == "undefined") {
-                a.score = 0;
-            }
-
-            if (typeof b.score == "undefined") {
-                b.score = 0;
-            }
-
-            if (a.score == b.score) {
-                return a.score - b.score;
-            }
+            if (typeof a.score == "undefined") a.score = 0;
+            if (typeof b.score == "undefined") b.score = 0;
+            if (a.score == b.score) return a.score - b.score;
 
             return b.score - a.score;
         });
-
 
         // Create JSX item with new order
         const charItems = charsWithScore.map((char) => {

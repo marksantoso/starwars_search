@@ -1,7 +1,35 @@
 import rename from 'deep-rename-keys';
 
+// Reverse engineer code from http://jalequin.atwebpages.com/Pages/Other/Translators/Shyriiwook.php
 
+// define translation array
 let wookieeCodes=new Array(47);
+wookieeCodes["A"]="A";
+wookieeCodes["B"]="B";
+wookieeCodes["C"]="C";
+wookieeCodes["D"]="D";
+wookieeCodes["E"]="E";
+wookieeCodes["F"]="F";
+wookieeCodes["G"]="G";
+wookieeCodes["H"]="H";
+wookieeCodes["I"]="I";
+wookieeCodes["J"]="J";
+wookieeCodes["K"]="K";
+wookieeCodes["L"]="L";
+wookieeCodes["M"]="M";
+wookieeCodes["N"]="N";
+wookieeCodes["O"]="O";
+wookieeCodes["P"]="P";
+wookieeCodes["Q"]="Q";
+wookieeCodes["R"]="R";
+wookieeCodes["S"]="S";
+wookieeCodes["T"]="T";
+wookieeCodes["U"]="U";
+wookieeCodes["V"]="V";
+wookieeCodes["W"]="W";
+wookieeCodes["X"]="X";
+wookieeCodes["Y"]="Y";
+wookieeCodes["Z"]="Z";
 wookieeCodes["ac"]="h";
 wookieeCodes["ah"]="i";
 wookieeCodes["ak"]="p";
@@ -25,6 +53,7 @@ wookieeCodes["wa"]="d";
 wookieeCodes["wo"]="e";
 wookieeCodes["ww"]="f";
 wookieeCodes["wh"]="n";
+wookieeCodes["lh"]="l";
 wookieeCodes["c"]="s";
 wookieeCodes["ao"]="t";
 wookieeCodes["k"]="x";
@@ -49,6 +78,7 @@ wookieeCodes[":"]=":";
 wookieeCodes["&"]="&";
 wookieeCodes["="]="=";
 wookieeCodes["_"]="_";
+wookieeCodes["-"]="-";
 
 export const translateString = (string) => {
 

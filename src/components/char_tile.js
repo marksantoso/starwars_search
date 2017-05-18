@@ -3,10 +3,13 @@ import CharacterScore from './char_score';
 import CharDetailedModal from './char_detailed';
 import { connect } from 'react-redux';
 
+// import actionCreators
 import { getFilms } from '../actions/filmsActions';
 import { getSpecies } from '../actions/speciesActions';
 import { getStarships } from '../actions/starshipsActions';
 
+// import asset
+import noImage from '../assets/images/char_images/no-image.jpg';
 
 class Character extends Component {
 
@@ -21,7 +24,6 @@ class Character extends Component {
             this.closeModal = this.closeModal.bind(this);
 
             console.log(props);
-
         }
 
         showModal() {
@@ -48,15 +50,25 @@ class Character extends Component {
             this.setState({ modalState: false })
         }
 
+
         render() {
+
+            const charImage = (this.props.char.thumbnailUrl !== null) ? this.props.char.thumbnailUrl : noImage;
+
+            const imageStyle = {
+                backgroundImage:  'url(' + charImage + ')',
+            }
+
             return (
                 <div className="col-md-3 col-sm-3 col-xs-12 c-item animate">
                    <div className="content" onClick={this.showModal}>
                        <div className="row">
                            <div className="col-md-12">
-                               <img src={this.props.char.img} />
-                               <span className="name">{this.props.char.name}</span>
-                               <span className="planet">{this.props.char.homeworldName}</span>
+                               <div className="image" style={imageStyle}  />
+                               <div className="details">
+                                <span className="name">{this.props.char.name}</span>
+                                <span className="planet">{this.props.char.homeworldName}</span>
+                               </div>
                            </div>
                        </div>
                        <div className="row">
@@ -72,9 +84,8 @@ class Character extends Component {
         }
 }
 
-
-const mapStateToProps = ( state ) => {
-     return  state;
+const mapStateToProps = (state) => {
+     return state;
 }
 
 export default connect(mapStateToProps, { getFilms, getStarships, getSpecies })(Character);

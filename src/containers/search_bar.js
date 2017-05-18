@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getChars } from '../actions/charactersActions';
 import { Debounce } from 'react-throttle';
+import { getChars } from '../actions/charactersActions';
 
 class SearchBar extends Component {
 
     constructor(props) {
         super(props);
 
+        // set component state
         this.state = {
             term: ''
         };
@@ -17,18 +18,16 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <div className="form-group">
+            <div className="form-group search-bar">
                 <Debounce time="400" handler="onChange">
                      <input
-                            className="form-control input-md"
+                            className="form-control input-md search-input"
                             placeholder="Search..."
                             onChange = {this.handleInputChange}
                             //value={this.state.term} not required with debounce
                     />
                 </Debounce>
-
              </div>
-
         );
     }
 
@@ -37,7 +36,6 @@ class SearchBar extends Component {
         this.props.getChars(this.props.api.language, this.props.api.rootUrl, e.target.value);
     }
 }
-
 
 const mapStateToProps = (state) => {
     const { api } = state;

@@ -14,7 +14,6 @@ require('../sass/_styles.scss');
 class App extends Component {
 
     constructor(props) {
-
         super(props);
         this.props.getChars(this.props.api.language, this.props.api.rootUrl, null);
 
@@ -31,7 +30,15 @@ class App extends Component {
 
   render() {
 
-      console.log(this.props.characters);
+
+      /*
+      let charImages = {};
+      for ( let char in this.props.characters) {
+          const name = this.props.characters[char].name;
+          charImages[name] = { imageUrl: this.props.characters[char].imageUrl, thumbnailUrl: this.props.characters[char].thumbnailUrl };
+      }
+
+      console.log(JSON.stringify(charImages)); */
 
       let content = null;
       let showLoadMore;
@@ -59,10 +66,10 @@ class App extends Component {
         <div className="margin-tb-40">
             <div className="container">
                 <div className="row ">
-                      <div className="col-md-6">
+                      <div className="col-md-6 col-sm-7">
                           <h1 className="starwars-yellow">Starwars Library</h1>
                       </div>
-                      <div className="col-md-6">
+                      <div className="col-md-6 col-sm-5">
                             <Accessibility />
                       </div>
                 </div>
@@ -87,15 +94,8 @@ class App extends Component {
 }
 
 const mapStateToProps = ( state ) => {
-
     const { pagination, characters, scores, api } = state
     return { pagination, characters, scores, api };
-}
-
-
-// pushes getChars results to all reducers
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(null, dispatch);
 }
 
 export default connect(mapStateToProps, { getChars, fetchMoreChars })(App);

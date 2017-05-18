@@ -13,14 +13,14 @@
     }
 
     h3.popover-title {
-        font-size: 12px;
+        font-size: 1em;
         background: $navy;
         color: $starwarsYellow;
         border-bottom: 1px solid #1d242b;
     }
     .popover-content {
         border-radius: 3px;
-        font-size: 12px;
+        font-size: 1em;
         background: $navy;
         color: $starwarsYellow;
         border-bottom: 1px solid #1d242b;
@@ -32,52 +32,94 @@
     margin: 10px 0px 0px;
     text-align: right;
 
-    .font-size {
-        color: $starwarsYellow;
-        margin-top: 4px;
-        .increase {
-            display: inline-block;
-            font-size: 18px;
-            .plus {
-                font-size: 17px;
-                top: -3px;
-                position: absolute;
+    .fonts {
+        display: inline-block;
+        margin-right: 25px;
+        vertical-align: top;
+        .font-size {
+            color: $starwarsYellow;
+            margin-top: 4px;
+            .increase {
+                display: inline-block;
+                font-size: 1.125em;
+                .plus {
+                    font-size: 1.063em;
+                    top: -3px;
+                    position: absolute;
+                }
+                &:hover {
+                    cursor: pointer;
+                }
             }
+
+            .decrease {
+                display: inline-block;
+                margin-right: 15px;
+                font-size: 1.125em;
+                .minus {
+                    font-size: 1.063em;
+                    top: -3px;
+                    position: absolute;
+                }
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .language {
+        display: inline-block;
+        vertical-align: top;
+        .wookie {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
             &:hover {
                 cursor: pointer;
             }
         }
-
-        .decrease {
+        .english-flag {
             display: inline-block;
-            margin-right: 15px;
-            font-size: 18px;
-            .minus {
-                font-size: 17px;
-                top: -3px;
-                position: absolute;
-            }
+            margin-right: 10px;
+            width: 27px;
+            height: 27px;
             &:hover {
                 cursor: pointer;
             }
         }
     }
 
-    .wookie {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        &:hover {
-            cursor: pointer;
-        }
-    }
-    .english-flag {
-        display: inline-block;
-        margin-right: 10px;
-        width: 27px;
-        height: 27px;
-        &:hover {
-            cursor: pointer;
-        }
-    }
 }
+
+
+/* Large Devices, Wide Screens */
+    @media only screen and (max-width : 1200px) {
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (max-width : 992px) {
+        .char-detail-modal {
+            margin: 0 auto;
+            width: 75%;
+        }
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (max-width : 768px) {
+        .acess-container {
+            display: inline-block;
+            width: 100%;
+        }
+    }
+
+    /* Extra Small Devices, Phones */
+    @media only screen and (max-width : 480px) {
+
+    }
+
+    /* Custom, iPhone Retina */
+    @media only screen and (max-width : 320px) {
+
+    }
