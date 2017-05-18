@@ -22,8 +22,6 @@ class Character extends Component {
 
             this.showModal = this.showModal.bind(this);
             this.closeModal = this.closeModal.bind(this);
-
-            console.log(props);
         }
 
         showModal() {

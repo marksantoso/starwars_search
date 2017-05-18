@@ -10,3 +10,14 @@
         cursor: pointer;
     }
 }
+
+.close-btn {
+    background-color: $blue;
+    color: $white;
+    border: 0px;
+}
+
+.submit-btn {
+    background-color: $red;
+    color: $white;
+}

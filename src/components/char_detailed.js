@@ -130,7 +130,7 @@ class CharDetailedModal extends Component {
 
             </Modal.Body>
             <Modal.Footer>
-                <Button className="btn-sm" onClick={this.props.onHide}>Close</Button>
+                <Button className="btn-md close-btn" onClick={this.props.onHide}>Close</Button>
             </Modal.Footer>
           </Modal>
         );

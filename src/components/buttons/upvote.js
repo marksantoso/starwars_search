@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Popover, OverlayTrigger } from 'react-bootstrap';
+
 import { addUpVote } from '../../actions/scoreActions';
 
 class UpVote extends Component {
@@ -10,8 +12,17 @@ class UpVote extends Component {
     }
 
     render() {
+
+        const upVotePopover = (
+          <Popover id="popover-trigger-hover-focus" className="pop-over">
+            Upvote character
+          </Popover>
+        );
+
         return (
-            <i className="glyphicon glyphicon-arrow-up upVote" onClick={this.handleUpVote} ></i>
+            <OverlayTrigger trigger={['hover', 'focus']} placement="top" overlay={upVotePopover} name="upVote">
+                <i className="glyphicon glyphicon-arrow-up upVote" onClick={this.handleUpVote} ></i>
+            </OverlayTrigger>
         );
     }
 

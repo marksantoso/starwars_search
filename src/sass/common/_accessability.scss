@@ -12,6 +12,14 @@
         }
     }
 
+    &.popover.top {
+        > .arrow {
+            &:after {
+                border-top-color: $navy;
+            }
+        }
+    }
+
     h3.popover-title {
         font-size: 1em;
         background: $navy;
@@ -23,7 +31,7 @@
         font-size: 1em;
         background: $navy;
         color: $starwarsYellow;
-        border-bottom: 1px solid #1d242b;
+        border-bottom: 0px solid #1d242b;
     }
 }
 

@@ -9,7 +9,7 @@ class CommentForm extends Component {
         <div >
            <Field className="comment" name="comment" component="textarea" type="text" />
         </div>
-        <button className="btn btn-md" type="submit">Submit</button>
+        <button className="btn btn-md submit-btn" type="submit">Submit</button>
       </form>
     );
   }
