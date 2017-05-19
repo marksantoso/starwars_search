@@ -12,7 +12,9 @@ export const addUpVote = (currentScore) => {
         const score = currentScore.score + 1;
 
         let char = {};
-        char[name] = { score: score }
+        char[name] = {
+            score: score
+        }
 
         dispatch(storeUpVote(char));
     }
@@ -25,7 +27,9 @@ export const addDownVote = (currentScore) => {
     score <= 0 ? score = 0 : score;
 
     let char = {};
-    char[name] = { score: score }
+    char[name] = {
+        score: score
+    }
 
     return (dispatch, getState) => {
         dispatch(storeDownVote(char));
@@ -37,12 +41,12 @@ function storeUpVote(char) {
     return {
         type: SCORE_ADD,
         payload: char
-     }
+    }
 }
 
 function storeDownVote(char) {
     return {
         type: SCORE_DEC,
         payload: char
-     }
+    }
 }

@@ -4,8 +4,11 @@
 @import './common/_accessability.scss';
 @import './common/_buttons.scss';
 
-@import './_characterItem.scss';
-@import './_charactersDetails.scss';
-@import './_score.scss';
-@import './_search_bar.scss';
-@import './_gridanimation.scss';
+@import './sections/about/_about.scss';
+
+@import './sections/main/_header.scss';
+@import './sections/main/_characterItem.scss';
+@import './sections/main/_charactersDetails.scss';
+@import './sections/main/_score.scss';
+@import './sections/main/_search_bar.scss';
+@import './sections/main/_gridanimation.scss';

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Popover, OverlayTrigger } from 'react-bootstrap';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Popover, OverlayTrigger} from 'react-bootstrap';
 
-import { addUpVote } from '../../actions/scoreActions';
+import {addUpVote} from '../../actions/scoreActions';
 
 class UpVote extends Component {
 
@@ -14,14 +14,14 @@ class UpVote extends Component {
     render() {
 
         const upVotePopover = (
-          <Popover id="popover-trigger-hover-focus" className="pop-over">
-            Upvote character
-          </Popover>
+            <Popover id="popover-trigger-hover-focus" className="pop-over">
+                Upvote character
+            </Popover>
         );
 
         return (
             <OverlayTrigger trigger={['hover', 'focus']} placement="top" overlay={upVotePopover} name="upVote">
-                <i className="glyphicon glyphicon-arrow-up upVote" onClick={this.handleUpVote} ></i>
+                <i className="glyphicon glyphicon-arrow-up upVote" onClick={this.handleUpVote}></i>
             </OverlayTrigger>
         );
     }
@@ -32,8 +32,8 @@ class UpVote extends Component {
     }
 }
 
-const mapStateToProps = ( state ) => {
+const mapStateToProps = (state) => {
     return state;
 }
 
-export default connect(mapStateToProps, { addUpVote })(UpVote);
+export default connect(mapStateToProps, {addUpVote})(UpVote);

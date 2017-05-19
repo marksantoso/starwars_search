@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { translateString, translateObj } from '../helpers/translate';
+import {
+    translateString,
+    translateObj
+} from '../helpers/translate';
 
 import {
     STORE_FILMS,
@@ -55,7 +58,7 @@ const handleAjax = (promises, name, dispatch, language) => {
         dispatch(storeFilms(char));
         dispatch(loadedFilms());
 
-    }).catch(function (error) {
+    }).catch(function(error) {
         console.log(error)
         if (error.response) {
             dispatch(ajaxError(error.response.statusText));
@@ -66,14 +69,18 @@ const handleAjax = (promises, name, dispatch, language) => {
 function loadingFilms() {
     return {
         type: FILMS_LOADING,
-        payload: { filmsLoading: true }
+        payload: {
+            filmsLoading: true
+        }
     }
 }
 
 function loadedFilms() {
     return {
         type: FILMS_LOADED,
-        payload: { filmsLoading: false }
+        payload: {
+            filmsLoading: false
+        }
     }
 }
 
@@ -87,6 +94,9 @@ function storeFilms(films) {
 function ajaxError(errorText) {
     return {
         type: RESULTS_ERROR,
-        payload: {error: true, errorText}
+        payload: {
+            error: true,
+            errorText
+        }
     }
 }

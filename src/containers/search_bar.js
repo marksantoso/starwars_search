@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Debounce } from 'react-throttle';
-import { getChars } from '../actions/charactersActions';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Debounce} from 'react-throttle';
+import {getChars} from '../actions/charactersActions';
 
 class SearchBar extends Component {
 
@@ -20,14 +20,14 @@ class SearchBar extends Component {
         return (
             <div className="form-group search-bar">
                 <Debounce time="400" handler="onChange">
-                     <input
-                            className="form-control input-md search-input"
-                            placeholder="Search..."
-                            onChange = {this.handleInputChange}
-                            //value={this.state.term} not required with debounce
+                    <input
+                        className="form-control input-md search-input"
+                        placeholder="Search..."
+                        onChange={this.handleInputChange}
+                        //value={this.state.term} not required with debounce}
                     />
                 </Debounce>
-             </div>
+            </div>
         );
     }
 
@@ -38,8 +38,8 @@ class SearchBar extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { api } = state;
-    return { api };
+    const {api} = state;
+    return {api};
 }
 
-export default connect(mapStateToProps, { getChars })(SearchBar);
+export default connect(mapStateToProps, {getChars})(SearchBar);

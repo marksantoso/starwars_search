@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { translateString, translateObj } from '../helpers/translate';
+import {
+    translateString,
+    translateObj
+} from '../helpers/translate';
 
 import {
     STORE_SPECIES,
@@ -55,7 +58,7 @@ const handleAjax = (promises, name, dispatch, language) => {
         dispatch(loadedSpecies());
         dispatch(storeSpecies(char));
 
-    }).catch(function (error) {
+    }).catch(function(error) {
         console.log(error)
         if (error.response) {
             dispatch(ajaxError(error.response.statusText));
@@ -67,14 +70,18 @@ const handleAjax = (promises, name, dispatch, language) => {
 function loadingSpecies() {
     return {
         type: SPECIES_LOADING,
-        payload: { speciesLoading: true }
+        payload: {
+            speciesLoading: true
+        }
     }
 }
 
 function loadedSpecies() {
     return {
         type: SPECIES_LOADED,
-        payload: { speciesLoading: false }
+        payload: {
+            speciesLoading: false
+        }
     }
 }
 

@@ -1,6 +1,9 @@
 import axios from 'axios';
 // import helper functions
-import { translateObj, translateString } from '../helpers/translate';
+import {
+    translateObj,
+    translateString
+} from '../helpers/translate';
 // import image assets
 import charImages from '../assets/json/char_images.json';
 
@@ -28,7 +31,7 @@ export const getChars = (language, rootUrl, term) => {
         let url;
 
         if (term) {
-            language === 'wookiee' ? url = `${rootUrl}/people/?search=${term}&format=wookiee` :  url = `${rootUrl}/people/?search=${term}`;
+            language === 'wookiee' ? url = `${rootUrl}/people/?search=${term}&format=wookiee` : url = `${rootUrl}/people/?search=${term}`;
         } else {
             language === 'wookiee' ? url = `${rootUrl}/people/?format=wookiee` : url = `${rootUrl}/people/`;
         }
@@ -38,7 +41,7 @@ export const getChars = (language, rootUrl, term) => {
 }
 
 const handleAjax = (url, pageIndex, dispatch, language) => {
-    axios.get(url).then( function(response) {
+    axios.get(url).then(function(response) {
 
         let data;
         if (language === 'wookiee') {
@@ -47,9 +50,18 @@ const handleAjax = (url, pageIndex, dispatch, language) => {
             data = response.data;
         }
 
-        const { count, next, previous } = data
+        const {
+            count,
+            next,
+            previous
+        } = data
 
-        dispatch(storePagination({ count, next, previous, index: pageIndex }))
+        dispatch(storePagination({
+            count,
+            next,
+            previous,
+            index: pageIndex
+        }))
 
         let chars = data.results;
         let promises = [];
@@ -69,7 +81,9 @@ const handleAjax = (url, pageIndex, dispatch, language) => {
             let nextChars = [];
             Object.keys(results).forEach(function(key, index) {
                 //assign relevent key values
-                 nextChars[pageIndex + parseInt(key)] = { ...chars[key], homeworldName: results[key].data.name }
+                nextChars[pageIndex + parseInt(key)] = { ...chars[key],
+                    homeworldName: results[key].data.name
+                }
             });
 
             // Check for cached char images. Bing API is exxy.
@@ -88,11 +102,11 @@ const handleAjax = (url, pageIndex, dispatch, language) => {
                     const image = axios({
                         method: 'get',
                         url: `https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=${name}&count=1&offset=${offset}`,
-                          headers: {
-                              common: {
-                                  'Ocp-Apim-Subscription-Key': '***REMOVED***'
-                              }
-                          }
+                        headers: {
+                            common: {
+                                'Ocp-Apim-Subscription-Key': '***REMOVED***'
+                            }
+                        }
                     });
                     promises.push(image);
                 });
@@ -104,7 +118,10 @@ const handleAjax = (url, pageIndex, dispatch, language) => {
 
                         const imageUrl = (typeof results[key].data.value[0] !== 'undefined') ? results[key].data.value[0].contentUrl : null;
                         const thumbnailUrl = (typeof results[key].data.value[0] !== 'undefined') ? results[key].data.value[0].thumbnailUrl : null;
-                        nextChars[pageIndex + parseInt(key)] = { ...nextChars[pageIndex + parseInt(key)], imageUrl, thumbnailUrl }
+                        nextChars[pageIndex + parseInt(key)] = { ...nextChars[pageIndex + parseInt(key)],
+                            imageUrl,
+                            thumbnailUrl
+                        }
                     });
 
                     dispatch(storeCharList(nextChars));
@@ -119,7 +136,10 @@ const handleAjax = (url, pageIndex, dispatch, language) => {
                         name = translateString(name);
                     }
                     //spread values into existing array
-                    nextChars[key] = { ...nextChars[key], imageUrl: charImages[name].imageUrl, thumbnailUrl: charImages[name].thumbnailUrl }
+                    nextChars[key] = { ...nextChars[key],
+                        imageUrl: charImages[name].imageUrl,
+                        thumbnailUrl: charImages[name].thumbnailUrl
+                    }
                 });
 
                 dispatch(storeCharList(nextChars));
@@ -127,7 +147,7 @@ const handleAjax = (url, pageIndex, dispatch, language) => {
             }
         });
 
-    }).catch(function (error) {
+    }).catch(function(error) {
         console.log(error)
         if (error.response) {
             dispatch(ajaxError(error.response.statusText));
@@ -176,29 +196,40 @@ function storePagination(pagination) {
 function ajaxError(errorText) {
     return {
         type: RESULTS_ERROR,
-        payload: {error: true, errorText}
+        payload: {
+            error: true,
+            errorText
+        }
     }
 }
 
 function showMore() {
     return {
         type: SET_SHOWMORE,
-        payload: { showMore: true }
+        payload: {
+            showMore: true
+        }
     }
 }
+
 function hideShowMore() {
     return {
         type: SET_SHOWMORE,
-        payload: { showMore: false }
+        payload: {
+            showMore: false
+        }
     }
 }
 
 function clearError() {
     return {
         type: CLEAR_ERROR,
-        payload: { error: false }
+        payload: {
+            error: false
+        }
     }
 }
+
 function clearChars() {
     return {
         type: CHARS_CLEAR,
@@ -208,14 +239,18 @@ function clearChars() {
 function loadedChars() {
     return {
         type: CHARS_LOADED,
-        payload: { loading: false }
+        payload: {
+            loading: false
+        }
     }
 }
 
 function loadingChars() {
     return {
         type: CHARS_LOADING,
-        payload: { loading: true }
+        payload: {
+            loading: true
+        }
     }
 }
 

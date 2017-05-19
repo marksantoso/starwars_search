@@ -1,20 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
+import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
 
-import App from './components/app';
- 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk)
-);
+import About from './containers/about';
+import Main from './components/main';
 
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
-  , document.querySelector('.container'));
+    <Provider store={store}>
+        <Router>
+            <div>
+                <Switch>
+                    <Route path="/about" component={About} />
+                    <Route path="/" component={Main} />
+                </Switch>
+            </div>
+        </Router>
+
+</Provider>, document.querySelector('.container'));

@@ -36,13 +36,37 @@ module.exports = {
         }, {
             test: /\.css$/,
             use: ['postcss-loader']
-        }, {
+        },
+        {
             test: /\.(jpe?g|png|gif|svg)$/i,
-            loaders: [
-                'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-                'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
-            ]
-        }, {
+            use: [{
+                loader: 'file-loader',
+                options: {
+                    query: {
+                        name: 'assets/[name].[ext]'
+                    }
+                }
+            }, {
+                loader: 'image-webpack-loader',
+                options: {
+                    progressive: true,
+                    optipng: {
+                        optimizationLevel: 7,
+                    },
+                    mozjpeg: {
+                        quality: 65
+                    },
+                    gifsicle: {
+                        interlaced: true,
+                    },
+                    pngquant: {
+                        quality: '65-90',
+                        speed: 4
+                    }
+                }
+            }]
+        }, 
+        {
             test: /\.json$/,
             use: 'json-loader'
         }]

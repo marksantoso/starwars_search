@@ -19,13 +19,17 @@ export const updateFontSize = (newSize) => {
 function updateFontSizeAction(newSize) {
     return {
         type: UPDATE_FONTSIZE,
-        payload: { fontSize: newSize }
-     }
+        payload: {
+            fontSize: newSize
+        }
+    }
 }
 
 function changeLang(language) {
     return {
         type: CHANGE_LANGAUGE,
-        payload: { language }
-     }
+        payload: {
+            language
+        }
+    }
 }

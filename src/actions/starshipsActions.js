@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { translateString, translateObj } from '../helpers/translate';
+import {
+    translateString,
+    translateObj
+} from '../helpers/translate';
 
 import {
     STORE_STARSHIPS,
@@ -53,7 +56,7 @@ const handleAjax = (promises, name, dispatch, language) => {
         dispatch(loadedStarships());
         dispatch(storeStarships(char));
 
-    }).catch(function (error) {
+    }).catch(function(error) {
         console.log(error)
         if (error.response) {
             dispatch(ajaxError(error.response.statusText));
@@ -64,14 +67,18 @@ const handleAjax = (promises, name, dispatch, language) => {
 function loadingStarships() {
     return {
         type: STARSHIPS_LOADING,
-        payload: { starshipsLoading: true }
+        payload: {
+            starshipsLoading: true
+        }
     }
 }
 
 function loadedStarships() {
     return {
         type: STARSHIPS_LOADED,
-        payload: { starshipsLoading: false }
+        payload: {
+            starshipsLoading: false
+        }
     }
 }
 
