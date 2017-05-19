@@ -1,16 +1,21 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpackConfig = {
+
+};
 
 
 module.exports = {
-    entry: [
-        './src/index.js'
-    ],
+    entry: __dirname + '/src/index.js',
     output: {
-        path: __dirname + '/build',
-        publicPath: '/build',
-        filename: 'bundle.js'
+      path: __dirname + '/dist',
+      filename: 'bundle.js'
     },
+    plugins: [new HtmlWebpackPlugin({
+        title: 'Starwars Character Search',
+        // template: 'my-index.ejs', Allows loading of custom html template, wont worry about this for now.
+    })],
     devtool: 'cheap-module-source-map',
     module: {
         rules: [{
