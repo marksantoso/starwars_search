@@ -6,8 +6,8 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
 import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
 
-import About from './containers/about';
-import Main from './components/main';
+import About from './components/sections/about';
+import Main from './components/sections/main';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

@@ -88,57 +88,52 @@ export const translateString = (string) => {
     let temp;
     for (var x = 0; x < keys.length; x++) {
         if (keys[x] == "a" || keys[x] == "o" || keys[x] == "r" || keys[x] == "s" || keys[x] == "u" || keys[x] == "w" || keys[x] == "h") { //
-            temp = keys[x] +keys[x + 1];x++;
-        } else
-        { temp = keys[x];
+            temp = keys[x] + keys[x + 1];
+            x++;
+        } else {
+            temp = keys[x];
         }
-        if
-        (wookieeCodes[temp]) {newString += wookieeCodes[temp] +"";
+        if (wookieeCodes[temp]) {
+            newString += wookieeCodes[temp] + "";
         }
     }
 
-    return
-    newString;
+    return newString;
 }
 
-export
-const translateObj = (obj) => {
+export const translateObj = (obj) => {
 
     // fix broken object, null is in wookiee
-    let
-    data; if
-    (typeofobj === 'string') {data = obj. split('whhuanan').join('null');data = data. split('\\rc\\').join(' ');data = JSON. parse(data);
+    let data;
+    if (typeof obj === 'string') {
+        data = obj.split('whhuanan').join('null');
+        data = data.split('\\rc\\').join(' ');
+        data = JSON.parse(data);
 
-    } else
-    { data = obj;
+    } else {
+        data = obj;
     }
 
-    let
-    temp; var
-    obj = rename( data, function(key) {var
-        keys = key. split("");let
-        newKey = ''; if
-        (keys. length > 0) {let
-            temp; for
-            (varx = 0; x < keys. length; x++) {if
-                (keys[x] =="a" || keys[x] =="o" || keys[x] =="r" || keys[x] =="s" || keys[x] =="u" || keys[x] =="w" || keys[x] =="h") { //
-                temp =
-                    keys[x] + keys[x +1]; x++;
-                } else
-                    {
-                temp =
-                    keys[x];
+    let temp;
+    var obj = rename(data, function(key) {
+        var keys = key.split("");
+        let newKey = '';
+        if (keys.length > 0) {
+            let temp;
+            for (var x = 0; x < keys.length; x++) {
+                if (keys[x] == "a" || keys[x] == "o" || keys[x] == "r" || keys[x] == "s" || keys[x] == "u" || keys[x] == "w" || keys[x] == "h") { //
+                    temp = keys[x] + keys[x + 1];
+                    x++;
+                } else {
+                    temp = keys[x];
                 }
-                if
-                    (wookieeCodes[temp]) {newKey +=
-                    wookieeCodes[temp] + "";
+                if (wookieeCodes[temp]) {
+                    newKey += wookieeCodes[temp] + "";
                 }
             }
-            return
-                newKey;
+            return newKey;
         }
-        return
-            key;
+        return key;
     });
 
     return obj

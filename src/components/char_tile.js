@@ -60,7 +60,7 @@ class Character extends Component {
 
         return (
             <div className="col-md-3 col-sm-3 col-xs-12 c-item animate">
-                <div className="content" onClick={this.showModal}>
+                <div className="content draw" onClick={this.showModal}>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="image" style={imageStyle}/>

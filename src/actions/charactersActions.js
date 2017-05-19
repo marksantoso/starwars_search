@@ -66,6 +66,7 @@ const handleAjax = (url, pageIndex, dispatch, language) => {
         let chars = data.results;
         let promises = [];
 
+
         Object.keys(chars).forEach(function(key, index) {
             let homeworldUrl;
             if (language === 'wookiee') {
@@ -73,6 +74,7 @@ const handleAjax = (url, pageIndex, dispatch, language) => {
             } else {
                 homeworldUrl = chars[key].homeworld;
             }
+
             promises.push(axios.get(homeworldUrl));
         });
 
