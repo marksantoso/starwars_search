@@ -63,7 +63,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7c24eb88a7c1750d357a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "88b5adc1ce37fc09e482"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -12363,7 +12363,7 @@
 	  _react2['default'].createElement(
 	    'button',
 	    { onClick: renderNoHeight, onTouchStart: renderNoHeight, style: buttonStyle },
-	    'Body scroll, no height, like Facebook timeline'
+	    'Body scroll, no height, like Facebook timeline!'
 	  ),
 	  _react2['default'].createElement(
 	    'button',

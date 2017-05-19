@@ -159,7 +159,7 @@ class Accessibility extends Component {
         }
 
          return (
-            <div className="acess-container">
+            <div className="access-container">
                 <div className="fonts">
                     <div className="font-size">
                         <OverlayTrigger trigger={['hover', 'focus']} placement="bottom"  overlay={decreaseFontPopover} name="decreaseFont " onClick={this._decreaseFont.bind(this)}>
