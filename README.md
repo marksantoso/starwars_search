@@ -1,4 +1,4 @@
-# Starwars character search
+# 🌌 Starwars character search
 # Assignment for CM interview
 
 - SPA built in react.js

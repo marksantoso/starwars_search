@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 
 import About from './components/sections/about';
 import Main from './components/sections/main';
@@ -21,5 +21,4 @@ ReactDOM.render(
                 </Switch>
             </div>
         </Router>
-
-</Provider>, document.querySelector('.container'));
+    </Provider>, document.querySelector('.container'));
