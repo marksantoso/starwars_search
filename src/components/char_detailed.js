@@ -128,8 +128,7 @@ class CharDetailedModal extends Component {
                     <div className="header-details">
                         <Modal.Title id="contained-modal-title-sm">{this.props.char.name}</Modal.Title>
                         <h5>{this.props.char.homeworldName}</h5>
-                        <span className="score">{this.props.char.score}
-                            votes</span>
+                        <span className="score">{this.props.char.score} votes</span>
                     </div>
 
                     <img className="pull-right loader-bar" style={loading} src={spinner}/>

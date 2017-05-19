@@ -1,0 +1,30 @@
+.char-score {
+    position: absolute;
+    z-index: 9999;
+    margin-top: 10px;
+    font-size: 1em;
+
+    .glyphicon {
+        font-size: 20px;
+    }
+
+    .downVote {
+        margin-left: 5px;
+        &:hover {
+            cursor: pointer;
+            color: $starwarsYellow;
+        }
+    }
+
+    .score {
+        font-size: 1.5em
+    }
+
+    .upVote {
+        margin-right: 5px;
+        &:hover {
+            cursor: pointer;
+            color: $starwarsYellow;
+        }
+    }
+}

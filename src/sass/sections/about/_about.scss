@@ -1,0 +1,36 @@
+.about-section {
+    margin: 50px auto;
+    .navigation {
+        a {
+            font-size: 1em;
+            color: $starwarsYellow;
+            text-decoration: underline;
+        }
+    }
+
+    .about-content {
+        margin: 40px auto;
+        font-size: 1em;
+        color: $starwarsYellow;
+        text-align: center;
+        h1 {
+            text-align: center;
+        }
+        ul {
+            margin: 50px auto;
+            width: 70%;
+            text-align: left;
+            li {
+                list-style-type: none;
+            }
+        }
+
+        .email {
+            font-size: 0.750em;
+            color: $starwarsYellow;
+            .emoji {
+                font-size: 3em;
+            }
+        }
+    }
+}

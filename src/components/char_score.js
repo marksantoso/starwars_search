@@ -25,7 +25,7 @@ class CharacterScore extends Component {
                     name: this.props.char,
                     score: score
                 }}/>
-                <span>
+            <span className="score">
                     {score}
                 </span>
                 <DownVote currentScore={{
