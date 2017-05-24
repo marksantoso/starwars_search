@@ -18,11 +18,14 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <div className="form-group search-bar">
+            <div className="form-group search-bar" role="search">
                 <Debounce time="400" handler="onChange">
                     <input
                         className="form-control input-md search-input"
+                        tabindex="1"
+                        aria-label="Search"
                         placeholder="Search..."
+                        role="searchbox"
                         onChange={this.handleInputChange}
                         //value={this.state.term} not required with debounce}
                     />

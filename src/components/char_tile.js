@@ -63,7 +63,7 @@ class Character extends Component {
                 <div className="content draw" onClick={this.showModal}>
                     <div className="row">
                         <div className="col-md-12">
-                            <div className="image" style={imageStyle}/>
+                            <div className="image" role="presentation" style={imageStyle}/>
                             <div className="details">
                                 <span className="name">{this.props.char.name}</span>
                                 <span className="planet">{this.props.char.homeworldName}</span>

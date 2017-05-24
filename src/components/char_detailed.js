@@ -121,9 +121,9 @@ class CharDetailedModal extends Component {
         });
 
         return (
-            <Modal show={this.props.show} onHide={this.props.onHide} bsSize="large" aria-labelledby="contained-modal-title-sm" dialogClassName="char-detail-modal">
+            <Modal show={this.props.show} onHide={this.props.onHide} role="dialog" bsSize="large" aria-labelledby="contained-modal-title-sm" dialogClassName="char-detail-modal">
                 <Modal.Header closeButton>
-                    <div className="image-thumb" style={imageStyle}/>
+                    <div className="image-thumb" role="presentation" style={imageStyle}/>
 
                     <div className="header-details">
                         <Modal.Title id="contained-modal-title-sm">{this.props.char.name}</Modal.Title>
@@ -131,7 +131,7 @@ class CharDetailedModal extends Component {
                         <span className="score">{this.props.char.score} votes</span>
                     </div>
 
-                    <img className="pull-right loader-bar" style={loading} src={spinner}/>
+                    <img className="pull-right loader-bar" role="presentation" alt="" style={loading} src={spinner}/>
 
                 </Modal.Header>
                 <Modal.Body>
@@ -143,7 +143,7 @@ class CharDetailedModal extends Component {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className="btn-md close-btn" onClick={this.props.onHide}>Close</Button>
+                    <Button className="btn-md close-btn" role="button" onClick={this.props.onHide}>Close</Button>
                 </Modal.Footer>
             </Modal>
         );

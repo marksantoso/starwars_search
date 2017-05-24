@@ -4,19 +4,7 @@ import {
 } from './types';
 
 
-export const changeLanguage = (language) => {
-    return (dispatch, getState) => {
-        dispatch(changeLang(language));
-    }
-}
-
-export const updateFontSize = (newSize) => {
-    return (dispatch, getState) => {
-        dispatch(updateFontSizeAction(newSize));
-    }
-}
-
-function updateFontSizeAction(newSize) {
+export function updateFontSize(newSize) {
     return {
         type: UPDATE_FONTSIZE,
         payload: {
@@ -25,7 +13,7 @@ function updateFontSizeAction(newSize) {
     }
 }
 
-function changeLang(language) {
+export function changeLang(language) {
     return {
         type: CHANGE_LANGAUGE,
         payload: {

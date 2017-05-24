@@ -8,7 +8,7 @@ const About = () => {
             <div className="container">
                 <div className="col-md-12">
                     <div className="navigation">
-                        <Link to="/" ><Glyphicon glyph="chevron-left" />Back</Link>
+                        <Link to="/" ><Glyphicon glyph="chevron-left" role="navigation" />Back</Link>
                     </div>
                     <div className="about-content">
 

@@ -12,16 +12,15 @@ class UpVote extends Component {
     }
 
     render() {
-
         const upVotePopover = (
-            <Popover id="popover-trigger-hover-focus" className="pop-over">
+            <Popover id="popover-trigger-hover-focus" className="pop-over" role="tooltip">
                 Upvote character
             </Popover>
         );
 
         return (
             <OverlayTrigger trigger={['hover', 'focus']} placement="top" overlay={upVotePopover} name="upVote">
-                <i className="glyphicon glyphicon-arrow-up upVote" onClick={this.handleUpVote}></i>
+                <i className="glyphicon glyphicon-arrow-up upVote" onClick={this.handleUpVote} role="button"></i>
             </OverlayTrigger>
         );
     }

@@ -5,11 +5,11 @@ class CommentForm extends Component {
     render() {
         const {handleSubmit} = this.props;
         return (
-            <form className="commentForm" onSubmit={handleSubmit}>
+            <form className="commentForm" role="form" aria-label="comment" onSubmit={handleSubmit}>
                 <div >
-                    <Field className="comment" name="comment" component="textarea" type="text"/>
+                    <Field className="comment" name="comment" component="textarea" type="text" />
                 </div>
-                <button className="btn btn-md submit-btn" type="submit">Submit</button>
+                <button className="btn btn-md submit-btn" role="button" type="submit">Submit</button>
             </form>
         );
     }

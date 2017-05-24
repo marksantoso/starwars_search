@@ -18,14 +18,14 @@ class DownVote extends Component {
 
     render() {
         const downVotePopover = (
-            <Popover id="popover-trigger-hover-focus" className="pop-over">
+            <Popover id="popover-trigger-hover-focus" className="pop-over" role="tooltip">
                 Downvote character
             </Popover>
         );
 
         return (
             <OverlayTrigger trigger={['hover', 'focus']} placement="top" overlay={downVotePopover} name="downVote">
-                <i className="glyphicon glyphicon-arrow-down downVote" onClick={this.handleDownVote}></i>
+                <i className="glyphicon glyphicon-arrow-down downVote" onClick={this.handleDownVote} role="button"></i>
             </OverlayTrigger>
 
         );

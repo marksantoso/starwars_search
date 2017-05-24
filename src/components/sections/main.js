@@ -77,9 +77,9 @@ class Main extends Component {
                 <div className="container">
                     <div className="row ">
                         <div className="col-md-5 col-sm-7">
-                            <div className="heading">
+                            <div className="heading" role="heading">
                                 <h1 className="starwars-yellow">Starwars Library</h1>
-                                <Link to="/about" className="about-link starwars-yellow">About</Link>
+                                <Link to="/about" role="link" className="about-link starwars-yellow">About</Link>
                             </div>
                         </div>
                         <div className="col-md-offset-4 col-md-3 col-sm-5">
@@ -94,7 +94,7 @@ class Main extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="grid effect">
+                        <div className="grid effect" role="feed">
                             {content}
                         </div>
 

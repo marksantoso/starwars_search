@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Popover, OverlayTrigger} from 'react-bootstrap';
-import {changeLanguage, updateFontSize} from '../actions/accessibilityActions';
+import {changeLang, updateFontSize} from '../actions/accessibilityActions';
 import {getChars} from '../actions/charactersActions';
 
 // images import
@@ -23,13 +23,13 @@ class Accessibility extends Component {
 
     _changeToEnglish() {
         this.setState({chewy: chewy_disabled, english: english});
-        this.props.changeLanguage('english');
+        this.props.updateFontSize('english');
         this.props.getChars(null, this.props.api.rootUrl, null);
     };
 
     _changeToWookie() {
         this.setState({chewy: chewy, english: english_disabled});
-        this.props.changeLanguage('wookiee');
+        this.props.changeLang('wookiee');
         this.props.getChars('wookiee', this.props.api.rootUrl, null);
     };
 
@@ -158,16 +158,16 @@ class Accessibility extends Component {
         }
 
         return (
-            <div className="access-container">
+            <div className="access-container" role="toolbar">
                 <div className="fonts">
                     <div className="font-size">
                         <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={decreaseFontPopover} name="decreaseFont " onClick={this._decreaseFont.bind(this)}>
-                            <div className="decrease" style={decreaseFontColor}>
+                            <div className="decrease" style={decreaseFontColor} role="button">
                                 A<span className="minus">-</span>
                             </div>
                         </OverlayTrigger>
                         <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={increaseFontPopover} name="increaseFont" onClick={this._increaseFont.bind(this)}>
-                            <div className="increase" style={increaseFontColor}>
+                            <div className="increase" style={increaseFontColor} role="button">
                                 A<span className="plus">+</span>
                             </div>
                         </OverlayTrigger>
@@ -176,10 +176,10 @@ class Accessibility extends Component {
                 </div>
                 <div className="language">
                     <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={englishPopover} name="english" onClick={this._changeToEnglish.bind(this)}>
-                        <img className="english-flag" src={this.state.english}/>
+                        <img className="english-flag" role="button" alt="" src={this.state.english}/>
                     </OverlayTrigger>
                     <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={wookiePopover} name="chewy" onClick={this._changeToWookie.bind(this)}>
-                        <img className="wookie" src={this.state.chewy}/>
+                        <img className="wookie" role="button" alt="" src={this.state.chewy}/>
                     </OverlayTrigger>
                 </div>
             </div>
@@ -192,4 +192,4 @@ const mapStateToProps = (state) => {
     return {api, accessibility};
 }
 
-export default connect(mapStateToProps, {changeLanguage, updateFontSize, getChars})(Accessibility);
+export default connect(mapStateToProps, { changeLang, updateFontSize, getChars})(Accessibility);
