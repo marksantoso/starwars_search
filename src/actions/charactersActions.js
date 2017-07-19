@@ -106,7 +106,7 @@ const handleAjax = (url, pageIndex, dispatch, language) => {
                         url: `https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=${name}&count=1&offset=${offset}`,
                         headers: {
                             common: {
-                                'Ocp-Apim-Subscription-Key': '***REMOVED***'
+                                'Ocp-Apim-Subscription-Key': 'key goes here'
                             }
                         }
                     });
